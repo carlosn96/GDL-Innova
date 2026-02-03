@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="icon" href="https://supervision-docente.joannesystem.com/public/assets/images/logos/favicon.ico"
+        type="image/x-icon">
+    <title>Sinergia Creativa UNE 2025 - Hackathon de Co-Creación Humano-IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --neural-blue: #0066ff;
+            --neural-purple: #8b5cf6;
+            --neural-pink: #ec4899;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #2d1b69 50%, #4c1d95 75%, #7c2d92 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .neural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.1);
+            }
+        }
+
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+            max-width: 100%;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .data-stream {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #00f2fe, transparent);
+            animation: data-flow 3s linear infinite;
+        }
+
+        @keyframes data-flow {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .hologram-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.3), transparent);
+            animation: hologram-scan 3s ease-in-out infinite;
+        }
+
+        @keyframes hologram-scan {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .morphing-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+
+            0%,
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            border-right: 3px solid #00f2fe;
+            white-space: nowrap;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #00f2fe;
+            }
+        }
+
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .neuron {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00f2fe;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00f2fe;
+            animation: neuron-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neuron-pulse {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        .challenge-card {
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .challenge-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateZ(50px);
+        }
+
+        .timeline-3d {
+            perspective: 1000px;
+        }
+
+        .timeline-item-3d {
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item-3d:hover {
+            transform: translateZ(30px) rotateY(-5deg);
+        }
+
+        .particle-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00f2fe;
+            border-radius: 50%;
+            animation: particle-float 20s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .magnetic-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .magnetic-hover:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        .hero-bg {
+            background: radial-gradient(ellipse at center, rgba(103, 126, 234, 0.15) 0%, transparent 70%),
+                linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #2d1b69 50%, #4c1d95 75%, #7c2d92 100%);
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00f2fe, #667eea, #ec4899);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.1s ease;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div id="scrollProgress" class="scroll-progress"></div>
+    </div>
+
+    <!-- Particle Field Background -->
+    <div id="particleField" class="particle-field"></div>
+
+    <!-- Neural Network Background -->
+    <div id="neuralNetwork" class="neural-network"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-brain text-white"></i>
+                    </div>
+                    <span class="text-white font-bold text-xl">Sinergia Creativa UNE</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="text-cyan-300 hover:text-cyan-100 transition">Inicio</a>
+                    <a href="#about" class="text-cyan-300 hover:text-cyan-100 transition">Acerca de</a>
+                    <a href="#schedule" class="text-cyan-300 hover:text-cyan-100 transition">Cronograma</a>
+                    <a href="#tracks" class="text-cyan-300 hover:text-cyan-100 transition">Ejes</a>
+                    <a href="#tech" class="text-cyan-300 hover:text-cyan-100 transition">Stack</a>
+                    <a href="#evaluation" class="text-cyan-300 hover:text-cyan-100 transition">Evaluación</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden text-cyan-300 hover:text-cyan-100">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#hero" class="mobile-menu-link block px-3 py-2 text-cyan-300 hover:text-cyan-100">Inicio</a>
+                <a href="#about" class="mobile-menu-link block px-3 py-2 text-cyan-300 hover:text-cyan-100">Acerca
+                    de</a>
+                <a href="#schedule"
+                    class="mobile-menu-link block px-3 py-2 text-cyan-300 hover:text-cyan-100">Cronograma</a>
+                <a href="#tracks" class="mobile-menu-link block px-3 py-2 text-cyan-300 hover:text-cyan-100">Ejes</a>
+                <a href="#tech" class="mobile-menu-link block px-3 py-2 text-cyan-300 hover:text-cyan-100">Stack</a>
+                <a href="#evaluation"
+                    class="mobile-menu-link block px-3 py-2 text-cyan-300 hover:text-cyan-100">Evaluación</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg pt-16">
+        <div class="floating-orb w-96 h-96 bg-purple-500 opacity-20 top-20 left-10"></div>
+        <div class="floating-orb w-64 h-64 bg-cyan-500 opacity-20 bottom-20 right-10" style="animation-delay: 2s;">
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-8">
+                <span
+                    class="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-full border border-cyan-500/30 text-cyan-300 text-sm font-medium mb-4">
+                    <i class="fas fa-calendar-alt mr-2"></i>Hackathon 2025 • Universidad UNE
+                </span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 neon-text">
+                <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Sinergia Creativa
+                </span>
+            </h1>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-cyan-200 mb-4">
+                Hackathon de Co-Creación Humano-IA
+            </h2>
+
+            <p class="text-xl md:text-2xl text-cyan-100 mb-8 max-w-3xl mx-auto">
+                Donde la <span class="text-purple-400 font-semibold">Ingeniería en Computación</span> se encuentra con
+                el <span class="text-pink-400 font-semibold">Diseño Gráfico y Multimedia</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <div class="glass-card px-6 py-3 rounded-lg">
+                    <i class="fas fa-code text-cyan-400 mr-2"></i>
+                    <span class="text-white font-semibold">Ingeniería en Computación</span>
+                </div>
+                <div class="text-cyan-400 text-2xl">+</div>
+                <div class="glass-card px-6 py-3 rounded-lg">
+                    <i class="fas fa-palette text-pink-400 mr-2"></i>
+                    <span class="text-white font-semibold">Diseño Gráfico y Multimedia</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-xl magnetic-hover">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-cyan-300 font-bold mb-2">Duración</h3>
+                    <p class="text-white">2 Días Intensivos</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl magnetic-hover">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-purple-300 font-bold mb-2">Equipos</h3>
+                    <p class="text-white">Multidisciplinarios</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl magnetic-hover">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-pink-300 font-bold mb-2">Enfoque</h3>
+                    <p class="text-white">Guadalajara Local</p>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <a href="#about"
+                    class="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full text-white font-bold text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-105">
+                    Conoce Más <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-cyan-400 text-3xl opacity-50"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        Rompiendo Silos Académicos
+                    </span>
+                </h2>
+                <p class="text-cyan-200 text-xl max-w-3xl mx-auto">
+                    Un evento que transforma la IA de herramienta a puente entre la lógica sistémica y la retórica
+                    visual
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="glass-card p-8 rounded-2xl challenge-card">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-cyan-300 mb-4">La Visión</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Este evento busca unir a estudiantes de Ingeniería en Computación (Plan 22B) y Diseño Gráfico y
+                        Multimedia (Plan 2019) bajo un objetivo común: explorar cómo la IA actúa como puente entre la
+                        lógica sistémica y la creatividad visual para resolver retos reales en Guadalajara.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl challenge-card">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-purple-300 mb-4">El Objetivo</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Crear soluciones reales donde el diseño no sea solo estético y el código no sea solo funcional,
+                        sino que ambos converjan en prototipos que impacten la sociedad y la industria local de
+                        Guadalajara.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mentores Section -->
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="text-3xl font-bold text-white mb-8 text-center">
+                    <i class="fas fa-chalkboard-teacher text-cyan-400 mr-3"></i>
+                    Docentes como Facilitadores de Innovación
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check-circle text-white text-3xl"></i>
+                        </div>
+                        <h4 class="text-cyan-300 font-bold text-lg mb-2">Validar la Propuesta</h4>
+                        <p class="text-gray-300 text-sm">
+                            Asegurar que diseño y código converjan en una solución real con valor estratégico
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users-cog text-white text-3xl"></i>
+                        </div>
+                        <h4 class="text-purple-300 font-bold text-lg mb-2">Facilitar "Pair Creation"</h4>
+                        <p class="text-gray-300 text-sm">
+                            Fomentar trabajo simultáneo sobre prompts y archivos usando Cursor o Figma AI
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-r from-pink-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-layer-group text-white text-3xl"></i>
+                        </div>
+                        <h4 class="text-pink-300 font-bold text-lg mb-2">Gestionar Complejidad</h4>
+                        <p class="text-gray-300 text-sm">
+                            Ayudar a definir un MVP alcanzable en el tiempo del evento
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-20 px-4 bg-black bg-opacity-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        Cronograma Intensivo
+                    </span>
+                </h2>
+                <p class="text-cyan-200 text-xl">
+                    09:00 - 14:30 • Dos días de colaboración y ejecución
+                </p>
+            </div>
+
+            <!-- Day 1 -->
+            <div class="mb-12">
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <div class="flex items-center justify-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-black text-2xl">1</span>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-bold text-cyan-300 text-center mb-2">Día 1: Inspiración e Ideación</h3>
+                    <p class="text-center text-gray-300 mb-8">Framing & Concept</p>
+                    <p class="text-center text-cyan-200 text-lg font-semibold mb-8">
+                        <i class="fas fa-bullseye mr-2"></i>
+                        Objetivo: Identificar un problema en Guadalajara y definir una solución co-creada
+                    </p>
+                </div>
+
+                <div class="space-y-4 timeline-3d">
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-flag-checkered text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-cyan-300 font-bold text-lg">Kick-off: El Futuro de Guadalajara</h4>
+                                    <p class="text-gray-400 text-sm">09:00 - 09:30</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Bienvenida y presentación de los ejes temáticos (Salud, Movilidad, Cultura local)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-comments text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-purple-300 font-bold text-lg">Ponencia: Simbiosis Técnica-Creativa
+                                    </h4>
+                                    <p class="text-gray-400 text-sm">09:30 - 10:15</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Charla por docentes de LDGM e IC sobre cómo la IA unifica Interfaz con Algoritmo
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-laptop-code text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-cyan-300 font-bold text-lg">Taller de Co-Prompting</h4>
+                                    <p class="text-gray-400 text-sm">10:15 - 11:00</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Ejercicio práctico guiado para generar activos conjuntos usando Gemini 2.0 Flash
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-lightbulb text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-pink-300 font-bold text-lg">Sprint de Ideación</h4>
+                                    <p class="text-gray-400 text-sm">11:00 - 13:00</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Equipos multidisciplinarios definen proyecto basado en Design Thinking
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-check-double text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-cyan-300 font-bold text-lg">Validación de Concepto</h4>
+                                    <p class="text-gray-400 text-sm">13:00 - 14:30</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Mentoría: Docentes rotan por mesas para validar ideas y corregir sesgos
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div>
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <div class="flex items-center justify-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-black text-2xl">2</span>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-bold text-purple-300 text-center mb-2">Día 2: Desarrollo y Demo</h3>
+                    <p class="text-center text-gray-300 mb-8">Prototyping & Pitch</p>
+                    <p class="text-center text-purple-200 text-lg font-semibold mb-8">
+                        <i class="fas fa-bullseye mr-2"></i>
+                        Objetivo: Construir el prototipo funcional y presentar la propuesta de valor
+                    </p>
+                </div>
+
+                <div class="space-y-4 timeline-3d">
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-brain text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-purple-300 font-bold text-lg">Ponencia: Mindset de MVP</h4>
+                                    <p class="text-gray-400 text-sm">09:00 - 09:45</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Cómo priorizar funcionalidades críticas para una entrega exitosa
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-code text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-cyan-300 font-bold text-lg">Sprint de Desarrollo Colaborativo</h4>
+                                    <p class="text-gray-400 text-sm">09:45 - 12:30</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Construcción del prototipo con soporte de mentores en APIs y arquitectura
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cogs text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-pink-300 font-bold text-lg">Pruebas y Ajustes de IA</h4>
+                                    <p class="text-gray-400 text-sm">12:30 - 13:30</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Pulido final de prompts, interfaces y revisión ética del uso de datos
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl timeline-item-3d border-2 border-cyan-500">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-trophy text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-cyan-300 font-bold text-lg">Showcase: Demo Day</h4>
+                                    <p class="text-gray-400 text-sm">13:30 - 14:30</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm md:ml-16">
+                                Presentación de 3 minutos por equipo ante docentes e invitados de la industria
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracks Section -->
+    <section id="tracks" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        Ejes de Aplicación
+                    </span>
+                </h2>
+                <p class="text-cyan-200 text-xl">
+                    Retos alineados a la realidad de Guadalajara y su entorno
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl challenge-card group">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-6 morphing-shape">
+                        <i class="fas fa-landmark text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-cyan-300 text-center mb-4">Identidad y Cultura GDL</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Sistemas generativos que promuevan el turismo o la historia local de Guadalajara
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block px-4 py-2 bg-cyan-500/20 rounded-full text-cyan-300 text-sm">
+                            <i class="fas fa-tag mr-2"></i>Cultura
+                        </span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl challenge-card group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-6 morphing-shape"
+                        style="animation-delay: 2s;">
+                        <i class="fas fa-bus text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-purple-300 text-center mb-4">Movilidad Inclusiva</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Soluciones de accesibilidad digital para el transporte o servicios urbanos
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-purple-300 text-sm">
+                            <i class="fas fa-tag mr-2"></i>Movilidad
+                        </span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl challenge-card group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-pink-500 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-6 morphing-shape"
+                        style="animation-delay: 4s;">
+                        <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-pink-300 text-center mb-4">Bienestar Estudiantil</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Herramientas de IA para la comunidad de la Universidad UNE
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block px-4 py-2 bg-pink-500/20 rounded-full text-pink-300 text-sm">
+                            <i class="fas fa-tag mr-2"></i>Educación
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <div class="glass-card inline-block px-8 py-4 rounded-full">
+                    <p class="text-cyan-200">
+                        <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
+                        Los equipos tienen <span class="text-white font-bold">libertad creativa</span> dentro de estos
+                        ejes
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech" class="py-20 px-4 bg-black bg-opacity-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        Stack Tecnológico
+                    </span>
+                </h2>
+                <p class="text-cyan-200 text-xl mb-4">
+                    Herramientas de capa gratuita 2026 • Sin barreras económicas
+                </p>
+                <div class="inline-block px-6 py-2 bg-green-500/20 rounded-full border border-green-500/30">
+                    <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                    <span class="text-green-300 font-semibold">Sin tarjeta de crédito requerida</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-microchip text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-cyan-300">Motor Lógico</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-cyan-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">OpenRouter:</strong> APIs gratuitas
+                                (Llama 3.3, Gemini Flash)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-cyan-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">Groq Cloud:</strong> Inferencia
+                                veloz</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-300">Entorno de Código</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-purple-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">Cursor:</strong> IDE con IA
+                                integrada</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-purple-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">Replit:</strong> Despliegue web
+                                inmediato</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-pink-500 to-red-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-palette text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-pink-300">Diseño de Experiencia</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-pink-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">Uizard:</strong> Transformar bocetos
+                                en UI</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-pink-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">Leonardo AI:</strong> Activos
+                                visuales coherentes</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-film text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-cyan-300">Integración Multimedia</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-cyan-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">ElevenLabs:</strong> Generación de
+                                voz</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-cyan-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300"><strong class="text-white">Adobe Firefly:</strong> Edición
+                                generativa rápida</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evaluation Section -->
+    <section id="evaluation" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        Criterios de Evaluación
+                    </span>
+                </h2>
+                <p class="text-cyan-200 text-xl">
+                    Evaluación holística del prototipo co-creado
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="glass-card p-8 rounded-2xl text-center group hover:scale-105 transition-transform duration-300">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-cyan-300 mb-4">Propuesta de Valor Interdisciplinaria</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        ¿Se nota el aporte estratégico de ambas carreras en la solución final?
+                    </p>
+                    <div class="inline-block px-4 py-2 bg-cyan-500/20 rounded-full">
+                        <span class="text-cyan-300 text-sm font-semibold">33.3%</span>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-2xl text-center group hover:scale-105 transition-transform duration-300">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-robot text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-purple-300 mb-4">Ejecución Técnica con IA</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Uso eficiente de las APIs y calidad de la ingeniería de prompts
+                    </p>
+                    <div class="inline-block px-4 py-2 bg-purple-500/20 rounded-full">
+                        <span class="text-purple-300 text-sm font-semibold">33.3%</span>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-2xl text-center group hover:scale-105 transition-transform duration-300">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-r from-pink-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-heart text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-pink-300 mb-4">Impacto en el Entorno Local</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Relevancia de la propuesta para la sociedad o industria de Guadalajara
+                    </p>
+                    <div class="inline-block px-4 py-2 bg-pink-500/20 rounded-full">
+                        <span class="text-pink-300 text-sm font-semibold">33.3%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-white text-center mb-6">
+                        <i class="fas fa-trophy text-yellow-400 mr-3"></i>
+                        Jurado Docente
+                    </h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        El cuerpo docente de ambas carreras evaluará la integridad del sistema bajo estos tres criterios
+                        clave,
+                        asegurando que cada prototipo represente una verdadera sinergia entre la lógica computacional y
+                        la
+                        retórica visual, con impacto real en el entorno de Guadalajara.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-cyan-900/30 to-purple-900/30">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="glass-card p-12 rounded-3xl">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
+                    ¿Listo para la <span
+                        class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Sinergia?</span>
+                </h2>
+                <p class="text-cyan-200 text-xl mb-8 max-w-2xl mx-auto">
+                    Únete a este evento transformador que empodera a estudiantes de la Universidad UNE para experimentar
+                    un entorno de trabajo colaborativo real y prepararse para los desafíos del mercado laboral digital.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                        class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full text-white font-bold text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>Inscríbete Ahora
+                    </button>
+                    <button
+                        class="px-8 py-4 glass-card rounded-full text-cyan-300 font-bold text-lg hover:bg-white/10 transition-all duration-300">
+                        <i class="fas fa-info-circle mr-2"></i>Más Información
+                    </button>
+                </div>
+
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div>
+                        <div class="text-3xl font-black text-cyan-400 mb-2">2</div>
+                        <div class="text-gray-300 text-sm">Días Intensivos</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-purple-400 mb-2">2</div>
+                        <div class="text-gray-300 text-sm">Carreras</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-pink-400 mb-2">3</div>
+                        <div class="text-gray-300 text-sm">Ejes Temáticos</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-cyan-400 mb-2">∞</div>
+                        <div class="text-gray-300 text-sm">Posibilidades</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-black bg-opacity-40">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start space-x-3 mb-3">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-brain text-white"></i>
+                        </div>
+                    </div>
+                    <h4
+                        class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-2">
+                        Sinergia Creativa UNE 2025
+                    </h4>
+                    <p class="text-cyan-300 font-medium">Universidad UNE</p>
+                    <p class="text-cyan-500 text-sm mt-2">Innovación • Colaboración • Transformación</p>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 mb-2">Organizado por:</p>
+                    <p class="text-cyan-300 font-semibold">Ingeniería en Computación (Plan 22B)</p>
+                    <p class="text-purple-300 font-semibold">Diseño Gráfico y Multimedia (Plan 2019)</p>
+                    <div class="mt-4 flex justify-center md:justify-end space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center hover:bg-cyan-500/30 transition">
+                            <i class="fab fa-facebook text-cyan-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center hover:bg-purple-500/30 transition">
+                            <i class="fab fa-instagram text-purple-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-pink-500/20 rounded-full flex items-center justify-center hover:bg-pink-500/30 transition">
+                            <i class="fab fa-twitter text-pink-300"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 Universidad UNE - Todos los derechos reservados
+                </p>
+                <p class="text-gray-500 text-xs mt-2">
+                    Guadalajara, Jalisco, México
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function setupScrollProgressIndicator() {
+            window.addEventListener('scroll', () => {
+                const scrollProgress = document.getElementById('scrollProgress');
+                if (!scrollProgress) return;
+                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (window.pageYOffset / totalHeight);
+                scrollProgress.style.transform = `scaleX(${progress})`;
+            });
+        }
+
+        function setupSmoothScrolling() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (!mobileMenuButton || !mobileMenu) return;
+
+            const mobileMenuIcon = mobileMenuButton.querySelector('i');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenuIcon.classList.remove('fa-times');
+                    mobileMenuIcon.classList.add('fa-bars');
+                } else {
+                    mobileMenuIcon.classList.remove('fa-bars');
+                    mobileMenuIcon.classList.add('fa-times');
+                }
+            });
+
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuIcon.classList.remove('fa-times');
+                    mobileMenuIcon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        function createParticleField() {
+            const particleField = document.getElementById('particleField');
+            if (!particleField) return;
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particleField.appendChild(particle);
+            }
+        }
+
+        function createNeuralNetwork() {
+            const neuralNetwork = document.getElementById('neuralNetwork');
+            if (!neuralNetwork) return;
+            const neuronCount = 30;
+
+            for (let i = 0; i < neuronCount; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.style.left = Math.random() * 100 + '%';
+                neuron.style.top = Math.random() * 100 + '%';
+                neuron.style.animationDelay = Math.random() * 2 + 's';
+                neuralNetwork.appendChild(neuron);
+            }
+        }
+
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(section);
+            });
+
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                heroSection.style.opacity = '1';
+                heroSection.style.transform = 'translateY(0)';
+            }
+        }
+
+        function setupMagneticHover() {
+            document.querySelectorAll('.magnetic-hover').forEach(element => {
+                element.addEventListener('mousemove', (e) => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    element.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.02)`;
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'translate(0px, 0px) scale(1)';
+                });
+            });
+        }
+
+        function setupCursorTrail() {
+            let lastTime = 0;
+            const throttleDelay = 100;
+
+            document.addEventListener('mousemove', (e) => {
+                const currentTime = Date.now();
+                if (currentTime - lastTime < throttleDelay) return;
+                lastTime = currentTime;
+
+                const trail = document.createElement('div');
+                trail.className = 'fixed w-2 h-2 bg-cyan-400 rounded-full pointer-events-none z-50';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.animation = 'fadeOut 1s ease-out forwards';
+                document.body.appendChild(trail);
+
+                setTimeout(() => trail.remove(), 1000);
+            });
+        }
+
+        function injectCursorTrailStyles() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 1; transform: scale(1); }
+                    100% { opacity: 0; transform: scale(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupScrollProgressIndicator();
+            setupSmoothScrolling();
+            setupMobileMenu();
+            setupScrollAnimations();
+            createParticleField();
+            createNeuralNetwork();
+            setupMagneticHover();
+            setupCursorTrail();
+            injectCursorTrailStyles();
+        });
+    </script>
+</body>
+
+</html>
